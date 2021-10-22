@@ -10,7 +10,7 @@ mkdir 8bit 10bit 12bit
 
 # --- Pixel depth 12
 cd 12bit
-cmake ../source                      \
+cmake ${CMAKE_ARGS} ../source                      \
     -DHIGH_BIT_DEPTH=ON              \
     -DEXPORT_C_API=OFF               \
     -DENABLE_SHARED=OFF              \
