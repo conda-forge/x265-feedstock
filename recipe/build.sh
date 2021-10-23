@@ -10,7 +10,7 @@ mkdir 8bit 10bit 12bit
 
 # --- Pixel depth 12
 cd 12bit
-cmake ${CMAKE_ARGS} ../source                      \
+cmake ${CMAKE_ARGS} ../source        \
     -DHIGH_BIT_DEPTH=ON              \
     -DEXPORT_C_API=OFF               \
     -DENABLE_SHARED=OFF              \
@@ -23,7 +23,7 @@ make -j${CPU_COUNT}
 
 # --- Pixel depth 10
 cd ../10bit
-cmake ../source                      \
+cmake ${CMAKE_ARGS} ../source        \
     -DHIGH_BIT_DEPTH=ON              \
     -DEXPORT_C_API=OFF               \
     -DENABLE_SHARED=OFF              \
@@ -39,7 +39,7 @@ cd ../8bit
 ln -sf ../10bit/libx265.a libx265_main10.a
 ln -sf ../12bit/libx265.a libx265_main12.a
 
-cmake ../source                                  \
+cmake ${CMAKE_ARGS} ../source                    \
     -DCMAKE_BUILD_TYPE="Release"                 \
     -DCMAKE_INSTALL_PREFIX=${PREFIX}             \
     -DENABLE_SHARED=TRUE                         \
