@@ -41,7 +41,7 @@ else
 
     make -j${CPU_COUNT}
 
-    EXTRA_LIBS='x265_main10.a;x265_main12.a'
+    EXTRA_LIBS="-DEXTRA_LIB=x265_main10.a;x265_main12.a"
     cd ../8bit
     ln -sf ../10bit/libx265.a libx265_main10.a
     ln -sf ../12bit/libx265.a libx265_main12.a
@@ -58,7 +58,7 @@ cmake ${CMAKE_ARGS} ../source                    \
     -DLINKED_10BIT=$LINKED_BITS                  \
     -DLINKED_12BIT=$LINKED_BITS                  \
     -DEXTRA_LINK_FLAGS='-L .'                    \
-    -DEXTRA_LIB="$EXTRA_LIBS"
+    "$EXTRA_LIBS"
 
 make -j${CPU_COUNT}
 
