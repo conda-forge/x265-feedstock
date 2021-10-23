@@ -8,13 +8,15 @@ set -ex
 
 mkdir 8bit 10bit 12bit
 
-if [[ $target_platform == linux-ppc64le || $target_platform == linux-aarch64]]; then
+cd 8bit
+
+if [[ $target_platform == linux-ppc64le || $target_platform == linux-aarch64 ]]; then
     EXTRA_LIBS=""
     LINKED_BITS="OFF"
 else
 
     # --- Pixel depth 12
-    cd 12bit
+    cd ../12bit
     cmake ${CMAKE_ARGS} ../source        \
         -DHIGH_BIT_DEPTH=ON              \
         -DEXPORT_C_API=OFF               \
@@ -39,7 +41,7 @@ else
 
     make -j${CPU_COUNT}
 
-    EXTRA_LIBS="x265_main10.a;x265_main12.a"
+    export EXTRA_LIB='x265_main10.a;x265_main12.a'
     cd ../8bit
     ln -sf ../10bit/libx265.a libx265_main10.a
     ln -sf ../12bit/libx265.a libx265_main12.a
@@ -55,12 +57,11 @@ cmake ${CMAKE_ARGS} ../source                    \
     -DENABLE_SHARED=TRUE                         \
     -DLINKED_10BIT=$LINKED_BITS                  \
     -DLINKED_12BIT=$LINKED_BITS                  \
-    -DEXTRA_LIB=$EXTRA_LIBS                      \
     -DEXTRA_LINK_FLAGS='-L .'                    \
 
 make -j${CPU_COUNT}
 
-if [[ $target_platform == linux-ppc64le || $target_platform == linux-aarch64]]; then
+if [[ $target_platform == linux-ppc64le || $target_platform == linux-aarch64 ]]; then
     echo "No 10/12 bit support on $target_platform."
 else
     mv libx265.a libx265_main.a
