@@ -24,7 +24,7 @@ else
         -DENABLE_CLI=OFF                 \
         -DMAIN12=ON                      \
         -DCMAKE_BUILD_TYPE="Release"     \
-        -DCMAKE_INSTALL_PREFIX=${PREFIX} \
+        -DCMAKE_INSTALL_PREFIX=${PREFIX}
 
     make -j${CPU_COUNT}
 
@@ -37,11 +37,11 @@ else
         -DENABLE_CLI=OFF                 \
         -DENABLE_HDR10_PLUS=ON           \
         -DCMAKE_BUILD_TYPE="Release"     \
-        -DCMAKE_INSTALL_PREFIX=${PREFIX} \
+        -DCMAKE_INSTALL_PREFIX=${PREFIX}
 
     make -j${CPU_COUNT}
 
-    export EXTRA_LIB='x265_main10.a;x265_main12.a'
+    EXTRA_LIBS='x265_main10.a;x265_main12.a'
     cd ../8bit
     ln -sf ../10bit/libx265.a libx265_main10.a
     ln -sf ../12bit/libx265.a libx265_main12.a
@@ -58,6 +58,7 @@ cmake ${CMAKE_ARGS} ../source                    \
     -DLINKED_10BIT=$LINKED_BITS                  \
     -DLINKED_12BIT=$LINKED_BITS                  \
     -DEXTRA_LINK_FLAGS='-L .'                    \
+    -DEXTRA_LIB="$EXTRA_LIBS"
 
 make -j${CPU_COUNT}
 
