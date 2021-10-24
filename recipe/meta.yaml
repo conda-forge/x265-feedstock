@@ -23,8 +23,11 @@ requirements:
 test:
   commands:
     - test -f ${PREFIX}/lib/libx265${SHLIB_EXT}
+    - test -f ${PREFIX}/lib/x265.pc
     - test -f ${PREFIX}/include/x265.h
     - x265 --version  # [build_platform == target_platform]
+    - x265 --version 2>&1 | grep "8bit" # [build_platform == target_platform]
+    - x265 --version 2>&1 | grep "8bit+10bit+12bit" # [(linux or osx) and x86_64]
 
 about:
   home: https://www.x265.org/
