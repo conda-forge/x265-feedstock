@@ -42,6 +42,7 @@ if [[ "${HOST_PLATFORM}" != "${BUILD_PLATFORM}" ]] && [[ "${HOST_PLATFORM}" != l
     EXTRA_CB_OPTIONS="${EXTRA_CB_OPTIONS:-} --no-test"
 fi
 
+
 ( endgroup "Configuring conda" ) 2> /dev/null
 
 if [[ "${BUILD_WITH_CONDA_DEBUG:-0}" == 1 ]]; then
