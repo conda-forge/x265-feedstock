@@ -10,7 +10,7 @@ source:
   sha256: e70a3335cacacbba0b3a20ec6fecd6783932288ebc8163ad74bcc9606477cae8
 
 build:
-  number: 0
+  number: 1
   skip: True  # [win]
 
 requirements:
@@ -18,12 +18,16 @@ requirements:
     - {{ compiler('cxx') }}
     - cmake
     - nasm
+    - make
 
 test:
   commands:
     - test -f ${PREFIX}/lib/libx265${SHLIB_EXT}
+    - test -f ${PREFIX}/lib/pkgconfig/x265.pc
     - test -f ${PREFIX}/include/x265.h
     - x265 --version  # [build_platform == target_platform]
+    - x265 --version 2>&1 | grep "8bit"  # [build_platform == target_platform]
+    - x265 --version 2>&1 | grep "8bit+10bit+12bit"  # [build_platform == target_platform and (x86_64 or arm64)]
 
 about:
   home: https://www.x265.org/
