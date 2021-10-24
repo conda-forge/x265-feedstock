@@ -59,7 +59,7 @@ cmake ${CMAKE_ARGS} ../source                    \
     -DLINKED_10BIT=$LINKED_BITS                  \
     -DLINKED_12BIT=$LINKED_BITS                  \
     -DEXTRA_LINK_FLAGS='-L .'                    \
-    "$EXTRA_LIBS"
+    $EXTRA_LIBS
 
 make -j${CPU_COUNT}
 
