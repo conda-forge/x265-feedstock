@@ -11,6 +11,7 @@ mkdir 8bit 10bit 12bit
 cd 8bit
 
 if [[ $target_platform == linux-ppc64le || $target_platform == linux-aarch64 ]]; then
+    # linux-ppc64le and linux-aarch64 can not build 10bit/12bit support
     EXTRA_LIBS=""
     LINKED_BITS="OFF"
 else
@@ -45,7 +46,7 @@ else
     cd ../8bit
     ln -sf ../10bit/libx265.a libx265_main10.a
     ln -sf ../12bit/libx265.a libx265_main12.a
-    LINKED_BITS="OFF"
+    LINKED_BITS="ON"
 fi
 
 # --- Pixel depth 8, and put it all together
