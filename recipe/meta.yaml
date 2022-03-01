@@ -10,8 +10,13 @@ source:
   sha256: e70a3335cacacbba0b3a20ec6fecd6783932288ebc8163ad74bcc9606477cae8
 
 build:
-  number: 1
+  number: 2
   skip: True  # [win]
+  run_exports:
+    # 2022/03/01 hmaarrfk
+    # Seems lik the SO name changes every minor version
+    # https://abi-laboratory.pro/index.php?view=timeline&l=x265
+    - {{ pin_subpackage('libopencv', max_pin='x.x') }}
 
 requirements:
   build:
