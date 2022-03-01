@@ -1,8 +1,7 @@
-{% set name = "x265" %}
 {% set version = "3.5" %}
 
 package:
-  name: {{ name|lower }}
+  name: x265
   version: {{ version }}
 
 source:
@@ -16,7 +15,7 @@ build:
     # 2022/03/01 hmaarrfk
     # Seems lik the SO name changes every minor version
     # https://abi-laboratory.pro/index.php?view=timeline&l=x265
-    - {{ pin_subpackage('libopencv', max_pin='x.x') }}
+    - {{ pin_subpackage('x265', max_pin='x.x') }}
 
 requirements:
   build:
