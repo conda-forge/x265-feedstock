@@ -13,7 +13,7 @@ build:
   skip: True  # [win]
   run_exports:
     # 2022/03/01 hmaarrfk
-    # Seems lik the SO name changes every minor version
+    # Seems like the SO name changes every minor version
     # https://abi-laboratory.pro/index.php?view=timeline&l=x265
     - {{ pin_subpackage('x265', max_pin='x.x') }}
 
