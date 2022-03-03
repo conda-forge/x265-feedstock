@@ -77,3 +77,7 @@ else
 fi
 
 make install
+# 2022/03/06: hmaarrfk
+# x265 likes to install the static library no matter what
+# Remove any installed static libraries
+rm ${PREFIX}/lib/*.a
