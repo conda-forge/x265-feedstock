@@ -63,20 +63,8 @@ cmake ${CMAKE_ARGS} ../source                    \
 
 make -j${CPU_COUNT}
 
-if [[ $target_platform == linux-ppc64le || $target_platform == linux-aarch64 ]]; then
-    echo "No 10/12 bit support on $target_platform."
-else
-    mv libx265.a libx265_main.a
-
-    if [[ $(uname) == "Darwin" ]]; then
-        libtool -static -o libx265.a libx265_main.a libx265_main10.a libx265_main12.a
-    else
-        ar cr libx265.a libx265_main.a libx265_main10.a libx265_main12.a
-        ranlib libx265.a
-    fi
-fi
-
 make install
+
 # 2022/03/06: hmaarrfk
 # x265 likes to install the static library no matter what
 # Remove any installed static libraries
