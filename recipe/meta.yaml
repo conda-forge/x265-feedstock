@@ -1,4 +1,4 @@
-{% set version = "3.5" %}
+{% set version = "4.3" %}
 
 package:
   name: x265
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://github.com/Multicorewareinc/x265/archive/refs/tags/{{ version }}.tar.gz
-  sha256: 136915263c00134dd98d9d250cdda9892779b2ea3166dae12a574ab86ad0ec85
+  sha256: fb157f809b74dabbef5002af99489fcaebb4d0073724beffdaaf2be15cbaf7ac
   patches:
     # x265 3.5 predates CMake 4, which dropped <3.5 compatibility and OLD
     # behaviour for CMP0025/CMP0054. Still unfixed upstream as of x265 4.1.
@@ -17,7 +17,7 @@ source:
     - patches/0003-Assemble-asm-objects-once-before-linking.patch
 
 build:
-  number: 4
+  number: 0
   run_exports:
     # 2022/03/01 hmaarrfk
     # Seems like the SO name changes every minor version
